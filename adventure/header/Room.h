@@ -11,6 +11,7 @@
 #include <chrono>
 #include <unordered_map>
 #include "SFML/Network.hpp"
+#include "SFML/System.hpp"
 #include <vector>
 #include "../header/Monster.h"
 #include "../header/NPC.h"

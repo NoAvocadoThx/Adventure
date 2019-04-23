@@ -96,10 +96,7 @@ void Player::move(std::string direction) {
 	if (direction == "down") {
 		p_level -= 1;
 	}
-	else {
-		std::cout << "Please type 'move <direction>' to move\n";
-		std::cout << "direction:north, east, south, west, up or down (All lower case)" << std::endl;
-	}
+
 
 }
 
