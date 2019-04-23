@@ -27,7 +27,7 @@ public:
 	int level;
 	//list of monsters and NPCs
 	std::vector<Monster*> monsters;
-	//std::vector<NPC*> NPCs;
+	std::vector<NPC*> NPCs;
 
 	//string list of monsters and NPCs
 
@@ -43,12 +43,12 @@ public:
 	//generate name of room
 	std::string genName();
 	//generate # of monsters
-	std::vector<Monster> genMonster();
+	void genMonster();
 	//generate # of npc
-	std::vector<std::string> genNPC();
+	void genNPC();
 	//convert vector of strings to strings
 	std::string toString(std::vector<Monster*> vec);
-
+	std::string toString(std::vector<NPC*> vec);
 
 
 };

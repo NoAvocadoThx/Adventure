@@ -10,7 +10,7 @@
 
 class Monster {
 private:
-	std::vector<std::string> monsterChoices = { "pikachu", "dragon","Hulk" };
+	std::vector<std::string> monsterChoices = { "Pikachu", "Dragon","Chicken" ,"Lizard"};
 public:
 	//monster data
 	const float HP=200.0f;

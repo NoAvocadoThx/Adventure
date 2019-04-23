@@ -14,7 +14,10 @@
 #define MAP_SIZE 3
 class Map {
 public:
+	//fake map with structure
 	int*** map;
+	//real map with room info
+	Room**** roomMap;
 	//array[2][0][1] //3rd table, 1st line, 2nd column
 	/*int map[MAP_SIZE][MAP_SIZE][MAP_SIZE] = {
 		{
@@ -34,7 +37,7 @@ public:
 		}
 
 	};*/
-	int mapSize = 0;
+	int mapSize;
 	Map();
 	Map(int size);
 	~Map();
@@ -43,6 +46,7 @@ public:
 	int*** genMap(int size);
 	void printMap();
 	void refineMap();
+	Room**** genRoom(int***);
 
 };
 #endif // !MAP_H

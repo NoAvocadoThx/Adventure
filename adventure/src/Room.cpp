@@ -1,16 +1,22 @@
 #include "../header/Room.h"
 
 #define MONSTER_MAXIMUM 4
+#define NPC_MAXIMUM 5
 
 Room::Room() {
 	isTrans = false;
 	name == "default";
+	genMonster();
+	genNPC();
 }
 
 Room::Room(int roomType) {
 	checkTrans(roomType);
 	//generate names of this room
 	name = genName();
+	genMonster();
+	genNPC();
+
 }
 
 Room::~Room() {
@@ -31,11 +37,11 @@ std::string Room::genName() {
 	int rand;
 	rand = (std::rand() % roomChoices.size());
 	//convert coordinate to string and save it
-	roomName = "room" + roomChoices[rand];
+	roomName = roomChoices[rand];
 	return roomName;
 }
 
-std::vector<Monster> Room::genMonster() {
+void Room::genMonster() {
 	int count;
 	//generate monsters # in each room randomly
 	count = (std::rand() % MONSTER_MAXIMUM);
@@ -46,7 +52,17 @@ std::vector<Monster> Room::genMonster() {
 
 }
 
+void Room::genNPC() {
+	int count;
+	//generate monsters # in each room randomly
+	count = (std::rand() % NPC_MAXIMUM);
+	for (int i = 0; i < count; i++) {
+		NPC* npcs = new NPC();
+		NPCs.push_back(npcs);
+	}
 
+}
+//monsters
 std::string Room::toString(std::vector<Monster*> monsterVec) {
 	std::string monsterList;
 	
@@ -61,15 +77,29 @@ std::string Room::toString(std::vector<Monster*> monsterVec) {
 	}
 	return monsterList;
 }
+//NPCs
+std::string Room::toString(std::vector<NPC*> NPCVec) {
+	std::string NPCList;
 
+	if (NPCVec.size() > 0) {
+		for (int i = 0; i < NPCVec.size() - 1; i++) {
+			NPCList.append(NPCVec[i]->name + ", ");
+		}
+		NPCList.append(NPCVec[NPCVec.size() - 1]->name);
+	}
+	else {
+		NPCList.append("None");
+	}
+	return NPCList;
+}
 
 void Room::displayInfo() {
 	//print room info
-	std::cout << "Room info:" << std::endl;
+	std::cout << "\nRoom Info" << std::endl;
 	std::cout << "Room name is : " << name << std::endl;
 	std::cout << "Room location (row, colume, level) :" << row << ", " << col << ", " << level << std::endl;
 	std::cout << "List of Monsters: " << toString(monsters) << std::endl;
-	std::cout << "List of NPCs: " << NPCList << std::endl;
+	std::cout << "List of NPCs: " << toString(NPCs) << std::endl;
 }
 
 

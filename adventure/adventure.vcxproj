@@ -118,6 +118,8 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Monster.cpp" />
+    <ClCompile Include="src\NPC.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Room.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -5,18 +5,28 @@ using namespace std;
 Map::Map() {
 	mapSize = MAP_SIZE;
 	map=genMap(MAP_SIZE);
+	roomMap = genRoom(map);
 }
 
 
 Map::Map(int size) {
 	mapSize = MAP_SIZE;
 	map = genMap(size);
+	roomMap = genRoom(map);
 
 }
 
 
 Map::~Map() {
-	
+	for (int i = 0; i < mapSize; i++)
+	{
+		for (int j = 0; j < mapSize; j++)
+		{
+			delete[] roomMap[i][j];
+		}
+		delete[] roomMap[i];
+	}
+	delete roomMap;
 }
 
 
@@ -64,12 +74,51 @@ int*** Map::genMap(int size) {
 		}
 		
 	}
-
+	temp[0][0][0] = 1;
 	return temp;
 
 
 
 }
+
+Room**** Map::genRoom(int*** map) {
+	Room **** roomArr = new Room***[mapSize]();
+	if (map) {
+		for (int k = 0; k < mapSize ; k++) {
+			roomArr[k] = new Room**[mapSize]();
+			for (int i = 0; i < mapSize ; i++) {
+				roomArr[k][i] = new Room*[mapSize]();
+				for (int j = 0; j < mapSize ; j++) {
+					//generate transparent room
+					if (map[k][i][j] == 1) {
+						Room *temp = new Room(1);
+						temp->level = k;
+						temp->row = i;
+						temp->col = j;
+						roomArr[k][i][j] = temp;
+					}
+					//generate solid room
+					else {
+						Room *temp2 = new Room(0);
+						temp2->level = k;
+						temp2->row = i;
+						temp2->col = j;
+						roomArr[k][i][j] = temp2;
+					}
+				}
+
+			}
+		}
+	}
+	else {
+		cout << "map does not exist!" << endl;
+		exit(0);
+	}
+	return roomArr;
+}
+
+
+
 void Map::refineMap() {
 	if (map) {
 		for (int k = 0; k < mapSize - 1; k++) {
@@ -86,7 +135,7 @@ void Map::refineMap() {
 		}
 	}
 	else {
-		cout << "map is not exist!" << endl;
+		cout << "map does not exist!" << endl;
 		exit(0);
 	}
 	
@@ -94,8 +143,7 @@ void Map::refineMap() {
 void Map::printMap() {
 	if (map) {
 		for (int k = 0; k < mapSize; k++) {
-			cout << endl;
-			cout << "level " << k + 1 << endl;
+			cout << "level " << k  << endl;
 			
 			for (int i = 0; i < mapSize; i++) {
 				for (int j = 0; j < mapSize; j++) {
