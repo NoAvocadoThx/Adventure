@@ -5,12 +5,13 @@
 #include "../header/Map.h"
 #include "../header/Player.h"
 #include <Windows.h>
+#include "main.h"
 
 #define MAP_SIZE 3
 #define ESCAPE 27
 using namespace std;
 
-Map *map;
+Map *gameMap;
 Player *player;
 std::string north = "north";
 std::string south = "south";
@@ -23,7 +24,7 @@ std::string canMove;
 
 void init() {
 
-	map = new Map(MAP_SIZE);
+	gameMap = new Map(MAP_SIZE);
 	player = new Player();
 
 
@@ -41,45 +42,45 @@ void moving(string direction) {
 			
 	
 	//if player can move north
-	if (direction=="north"&&player->canMoveNorth(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction=="north"&&player->canMoveNorth(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(north);
 		return;
 	}
 	//if player can move south
-	if (direction == "south"&&player->canMoveSouth(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction == "south"&&player->canMoveSouth(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(south);
 		return;
 
 	}
 	//if player can move west
-	if (direction == "west"&&player->canMoveWest(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction == "west"&&player->canMoveWest(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(west);
 		return;
 	}
 	//if player can move east
-	if (direction == "east"&&player->canMoveEast(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction == "east"&&player->canMoveEast(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(east);
 		return;
 	}
 	//if player can move up
-	if (direction == "up"&&player->canMoveUp(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction == "up"&&player->canMoveUp(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(up);
 		return;
 	}
 	//if player can move down
-	if (direction == "down"&&player->canMoveDown(player->p_row, player->p_col, player->p_level, map->map)) {
+	if (direction == "down"&&player->canMoveDown(player->p_row, player->p_col, player->p_level, gameMap->map)) {
 		player->move(direction);
-		map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(down);
 		return;
 	}
@@ -104,8 +105,8 @@ int main()
 	cout << "Game Start!\n" << endl;
 	//initialize the game
 	init();
-	map->printMap();
-	map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+	gameMap->printMap();
+	gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 	cout << "--Command Prompt--" << endl;
 	allCmd();
 
@@ -119,7 +120,7 @@ int main()
 		//handle input
 		string input;
 		//getline(cin, direction);
-		cout << "Input:";
+		cout << "Input>";
 		cin >> input;
 		if (input == "north" 
 			|| input == "south" 
@@ -132,18 +133,20 @@ int main()
 		//if there is no way to go player can reset the map
 		else if (input == "reset") {
 			init();
-			map->printMap();
-			map->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
+			gameMap->printMap();
+			gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		}
 		else if (input == "map") {
-			map->printMap();
+			gameMap->printMap();
 		}
 		else if (input == "help") {
 			allCmd();
 		}
+		else if (input == "exit") {
+			exit(0);
+		}
 		else {
-			std::cout << "Please type '<direction>' to move\n";
-			std::cout << "           --direction:north, east, south, west, up or down (All lower case)" << std::endl;
+			cout << "You entered a wrong command, type 'help' for more details." << endl;
 		}
 		cout << "******************Next Round******************" << endl;
 		

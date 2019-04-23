@@ -38,10 +38,13 @@ public:
 
 	};*/
 	int mapSize;
+	std::vector<int> port;
 	Map();
 	Map(int size);
 	~Map();
 	void initMap();
+	//generate ports
+	void genPort();
 	//generate random map
 	int*** genMap(int size);
 	void printMap();

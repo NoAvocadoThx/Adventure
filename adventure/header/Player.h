@@ -15,6 +15,7 @@ public:
 	int p_level;
 	int p_row;
 	int p_col;
+	std::string name;
 
 	Player();
 	~Player();

@@ -9,16 +9,30 @@
 #include <random>
 #include <string>
 #include <chrono>
+#include <unordered_map>
+#include "SFML/Network.hpp"
+#include <vector>
 #include "../header/Monster.h"
 #include "../header/NPC.h"
 
+typedef sf::Uint8 PacketType;
+const PacketType INITIAL_NAME_DATA = 0;
+const PacketType GENERAL_MSG = 1;
+const PacketType SERVER_MSG = 2;
 
 class Room {
 private:
 	std::vector<std::string> roomChoices = { "cave","sky island","grass land","mountain","jungle","house","forest","sea" };
 	std::vector<std::string> monsterChoices = { "pikachu", "dragon","Hulk" };
 
+
 public:
+	typedef std::unordered_map<sf::TcpSocket *, std::string> Clients;
+	Clients clients;
+	sf::TcpListener listner;
+
+	void handlePackets();
+	void broadCast(PacketType type, const std::string & msg);
 	bool isTrans;
 	std::string name;
 	//room coordinates
@@ -35,7 +49,7 @@ public:
 
 	Room();
 
-	Room(int roomType);
+	Room(int roomType, unsigned short port);
 	~Room();
 	void displayInfo();
 	//check

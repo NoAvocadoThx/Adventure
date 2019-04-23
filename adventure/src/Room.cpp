@@ -10,7 +10,7 @@ Room::Room() {
 	genNPC();
 }
 
-Room::Room(int roomType) {
+Room::Room(int roomType, unsigned short port) {
 	checkTrans(roomType);
 	//generate names of this room
 	name = genName();
