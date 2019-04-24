@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::row' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::col' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::level' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::port' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::isTrans' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@HG@Z</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::row' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@HG@Z</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::col' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@HG@Z</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::level' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@HG@Z</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>room.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Room::port' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Room::{ctor}</FUNCTION>
+    <DECORATED>??0Room@@QAE@HG@Z</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

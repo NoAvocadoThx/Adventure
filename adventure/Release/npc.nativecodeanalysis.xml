@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>npc.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'NPC::attack' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>NPC::{ctor}</FUNCTION>
+    <DECORATED>??0NPC@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>npc.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'NPC::HP' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>NPC::{ctor}</FUNCTION>
+    <DECORATED>??0NPC@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>npc.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'NPC::p_level' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>NPC::{ctor}</FUNCTION>
+    <DECORATED>??0NPC@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>npc.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'NPC::p_row' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>NPC::{ctor}</FUNCTION>
+    <DECORATED>??0NPC@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\michael\desktop\glumobile\adventure\adventure\src\</FILEPATH>
+      <FILENAME>npc.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'NPC::p_col' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>NPC::{ctor}</FUNCTION>
+    <DECORATED>??0NPC@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
