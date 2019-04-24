@@ -10,6 +10,7 @@
 #include <string>
 #include <chrono>
 #include "../header/Room.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 #define MAP_SIZE 3
 class Map {
@@ -38,13 +39,16 @@ public:
 
 	};*/
 	int mapSize;
-	std::vector<int> port;
+	//generate local ports start from 1000 for hosts
+	std::vector<unsigned short> ports;
 	Map();
 	Map(int size);
 	~Map();
 	void initMap();
 	//generate ports
 	void genPort();
+	//generate servers;
+	void genServer();
 	//generate random map
 	int*** genMap(int size);
 	void printMap();

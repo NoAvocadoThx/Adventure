@@ -15,11 +15,14 @@
 #include <vector>
 #include "../header/Monster.h"
 #include "../header/NPC.h"
+#define _CRT_SECURE_NO_WARNINGS
+
 
 typedef sf::Uint8 PacketType;
 const PacketType INITIAL_NAME_DATA = 0;
 const PacketType GENERAL_MSG = 1;
 const PacketType SERVER_MSG = 2;
+const PacketType LOC_MSG = 3;
 
 class Room {
 private:
@@ -28,12 +31,13 @@ private:
 
 
 public:
-	typedef std::unordered_map<sf::TcpSocket *, std::string> Clients;
+	//each room is a local server
+	/*typedef std::unordered_map<sf::TcpSocket *, std::string> Clients;
 	Clients clients;
 	sf::TcpListener listner;
+	unsigned short port;
+	sf::TcpSocket me;*/
 
-	void handlePackets();
-	void broadCast(PacketType type, const std::string & msg);
 	bool isTrans;
 	std::string name;
 	//room coordinates
@@ -43,14 +47,14 @@ public:
 	//list of monsters and NPCs
 	std::vector<Monster*> monsters;
 	std::vector<NPC*> NPCs;
-
+	unsigned short port;
 	//string list of monsters and NPCs
 
 	std::string NPCList;
 
 	Room();
 
-	Room(int roomType, unsigned short port);
+	Room(int roomType);
 	~Room();
 	void displayInfo();
 	//check
@@ -64,6 +68,12 @@ public:
 	//convert vector of strings to strings
 	std::string toString(std::vector<Monster*> vec);
 	std::string toString(std::vector<NPC*> vec);
+
+	//set up server
+	//void handlePackets();
+	//void broadCast(PacketType type, const std::string & msg);
+	//run server
+	//void run();
 
 
 };

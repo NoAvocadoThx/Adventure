@@ -5,7 +5,7 @@ using namespace std;
 Map::Map() {
 	mapSize = MAP_SIZE;
 	map=genMap(MAP_SIZE);
-	genPort();
+	
 	roomMap = genRoom(map);
 }
 
@@ -13,7 +13,6 @@ Map::Map() {
 Map::Map(int size) {
 	mapSize = MAP_SIZE;
 	map = genMap(size);
-	genPort();
 	roomMap = genRoom(map);
 
 }
@@ -31,12 +30,9 @@ Map::~Map() {
 	delete roomMap;
 }
 
-void Map::genPort() {
-	for (int i = 0; i < mapSize*mapSize*mapSize; i++) {
 
-		port.push_back(1000 + i);
-	}
-}
+
+
 
 int*** Map::genMap(int size) {
 	int randN;
@@ -101,24 +97,29 @@ Room**** Map::genRoom(int*** map) {
 					portIndex++;
 					//generate transparent room
 					if (map[k][i][j] == 1) {
-						Room *temp = new Room(1, port[portIndex]);
+						Room *temp = new Room(1);
+					//	temp->run();
 						temp->level = k;
 						temp->row = i;
 						temp->col = j;
 						roomArr[k][i][j] = temp;
+						portIndex++;
 					}
 					//generate solid room
 					else {
-						Room *temp2 = new Room(0, port[portIndex]);
+						Room *temp2 = new Room(0);
+						//temp2->run();
 						temp2->level = k;
 						temp2->row = i;
 						temp2->col = j;
 						roomArr[k][i][j] = temp2;
+						portIndex++;
 					}
 				}
 
 			}
 		}
+		
 	}
 	else {
 		cout << "map does not exist!" << endl;

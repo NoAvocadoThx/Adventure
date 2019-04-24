@@ -2,10 +2,13 @@
 #include <iostream>
 #include <cstdio>
 #include <conio.h> 
+#include <thread>
 #include "../header/Map.h"
 #include "../header/Player.h"
 #include <Windows.h>
 #include "main.h"
+#define _CRT_SECURE_NO_WARNINGS
+
 
 #define MAP_SIZE 3
 #define ESCAPE 27
@@ -13,6 +16,7 @@ using namespace std;
 
 Map *gameMap;
 Player *player;
+unsigned short port=1005;
 std::string north = "north";
 std::string south = "south";
 std::string east = "east";
@@ -22,12 +26,27 @@ std::string down = "down";
 //show which direction player can move
 std::string canMove;
 
+bool isSaying;
+
 void init() {
-
+	string name;
+	
 	gameMap = new Map(MAP_SIZE);
-	player = new Player();
-
-
+	std::cout << "What's your name: ";
+	getline(std::cin, name);
+	std::cout << "\n";
+	player = new Player(name, port);
+	sf::Socket::Status status;
+	status = player->connect(sf::IpAddress::LocalHost, player->port);
+	if (status != sf::Socket::Done)
+	{
+		std::cout << "Cant connect!\n";
+		
+		return;
+	}
+	player->send(INITIAL_NAME_DATA, name);
+	std::string playerLoc = player->convertLoc();
+	player->send(LOC_MSG, playerLoc);
 }
 
 void moving(string direction) {
@@ -43,14 +62,16 @@ void moving(string direction) {
 	
 	//if player can move north
 	if (direction=="north"&&player->canMoveNorth(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		//move to that direction and connect to that server
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
+		//display current room info
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(north);
 		return;
 	}
 	//if player can move south
 	if (direction == "south"&&player->canMoveSouth(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(south);
 		return;
@@ -58,28 +79,28 @@ void moving(string direction) {
 	}
 	//if player can move west
 	if (direction == "west"&&player->canMoveWest(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(west);
 		return;
 	}
 	//if player can move east
 	if (direction == "east"&&player->canMoveEast(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(east);
 		return;
 	}
 	//if player can move up
 	if (direction == "up"&&player->canMoveUp(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(up);
 		return;
 	}
 	//if player can move down
 	if (direction == "down"&&player->canMoveDown(player->p_row, player->p_col, player->p_level, gameMap->map)) {
-		player->move(direction);
+		player->move(direction, gameMap->roomMap[player->p_level][player->p_row][player->p_col]->port);
 		gameMap->roomMap[player->p_level][player->p_row][player->p_col]->displayInfo();
 		canMove.append(down);
 		return;
@@ -98,6 +119,14 @@ void allCmd() {
 	cout << "type 'help' to show all command" << endl;
 }
 
+void chat() {
+	std::string s;
+	player->receive(s);
+	cout << s << endl;
+}
+
+
+
 int main()
 {
 
@@ -110,7 +139,14 @@ int main()
 	cout << "--Command Prompt--" << endl;
 	allCmd();
 
+	
+		std::string join;
+		player->receive(join);
+		cout << join << endl;
+	
+
 	while (true) {
+		isSaying = false;
 		if (GetAsyncKeyState(VK_ESCAPE))
 		{
 			std::cout << "You've pressed the escape key, exiting\n";
@@ -119,9 +155,13 @@ int main()
 		}
 		//handle input
 		string input;
+		string content;
 		//getline(cin, direction);
 		cout << "Input>";
-		cin >> input;
+		getline(cin, input);
+		content = input;
+		std::string firstWord = content.substr(0, content.find(" "));
+		
 		if (input == "north" 
 			|| input == "south" 
 			|| input == "east" 
@@ -129,6 +169,9 @@ int main()
 			|| input == "up" 
 			|| input == "down") {
 			moving(input);
+			std::string playerLoc=player->convertLoc();
+			player->send(LOC_MSG, playerLoc);
+
 		}
 		//if there is no way to go player can reset the map
 		else if (input == "reset") {
@@ -145,10 +188,36 @@ int main()
 		else if (input == "exit") {
 			exit(0);
 		}
+		else if (firstWord=="yell") {
+			content = input.erase(0, 5);
+			player->send(GENERAL_MSG, input);
+			
+			
+			
+		}
+		else if (firstWord == "say") {
+			isSaying == true;
+			std::string otherPlayerLoc;
+			content = input.erase(0, 4);
+			player->receive_loc(otherPlayerLoc);
+			std::string curPlayerLoc = player->convertLoc();
+			player->send(GENERAL_MSG, input);
+			if (curPlayerLoc == otherPlayerLoc) {
+				
+				std::string s;
+				player->receive(s);
+				cout << s << endl;
+			}
+		}
 		else {
 			cout << "You entered a wrong command, type 'help' for more details." << endl;
 		}
-		cout << "******************Next Round******************" << endl;
+
+		if (!isSaying) {
+			chat();
+		}
+		cout << "\n******************Next Round******************" << endl;
+		
 		
 	}
 		//map->printMap();
